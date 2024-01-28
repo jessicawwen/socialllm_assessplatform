@@ -44,7 +44,7 @@ import router from "@/router";
 import {onMounted, ref} from "vue";
 import {ElMessage} from "element-plus";
 import SinglePost from "@/components/Post/single-post.vue";
-
+import request from "@/utils/request";
 
 const postCount = ref(1)
 const totalPost = ref(100)
