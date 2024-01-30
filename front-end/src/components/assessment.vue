@@ -20,21 +20,8 @@
   </div>
 
   <div class="content">
-    <div style="width: 10%;margin:0 20px 0 0">
-      <el-card style="height: 600px" shadow="never">
-
-      </el-card>
-    </div>
-    <div style="width: 50%">
+    <div style="width: 80%">
       <single-post :post-info="postArray[postCount - 1]" :comments="postComments"></single-post>
-    </div>
-    <div style="width:15%;margin:0 0 0 20px">
-      <el-card style="height: 400px;" shadow="never">
-
-      </el-card>
-      <el-card style="height: 300px;margin-top:20px" shadow="never">
-
-      </el-card>
     </div>
   </div>
 </template>

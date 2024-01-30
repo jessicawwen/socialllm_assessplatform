@@ -6,19 +6,22 @@
         <span>{{props.comment.content}}</span>
       </div>
       <div style="display: flex;justify-content: flex-end">
-        <el-button>点赞</el-button>
+        <stars v-model:rating="rating"></stars>
       </div>
     </div>
   </el-card>
 </template>
 
 <script setup>
+import stars from '../Stars/stars.vue';
+import { ref } from 'vue';
 const props = defineProps({
   comment:{
     type:Object,
     default:{}
   }
 })
+const rating = ref(0)
 </script>
 
 <style scoped>
