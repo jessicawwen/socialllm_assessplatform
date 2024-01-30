@@ -1,6 +1,7 @@
 import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
 import assessment from "@/components/assessment.vue";
 import main from '@/components/main.vue'
+import stars from '@/components/Stars/stars.vue'
 const routes = [
     {
         path: '/',
@@ -11,6 +12,11 @@ const routes = [
         path: '/main',
         name: 'main',
         component: assessment
+    },
+    {
+        path:'/stars',
+        name:'star',
+        component:stars
     }
 ]
 
