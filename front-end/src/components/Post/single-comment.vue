@@ -3,7 +3,7 @@
     <div class="main">
       <div>
         <span style="color:#dc7a59">{{props.comment.username}}:</span>
-        <span>{{props.comment.content}}</span>
+        <span>{{props.comment.comment}}</span>
       </div>
       <div style="display: flex;justify-content: flex-end">
         <stars v-model:rating="rating"></stars>

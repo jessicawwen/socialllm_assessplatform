@@ -1,60 +1,85 @@
 <template>
   <div class="main">
     <el-card class="info" shadow="never">
-      {{props.postInfo}}
+      {{ props.postInfo }}
     </el-card>
     <div class="button">
-      <el-button type="primary">给评论打分</el-button>
+      <el-button type="primary" @click="submit">提交</el-button>
     </div>
     <div class="comments">
-      <div v-for="item in props.comments" :key="item.content">
-        <single-comment :comment="item"></single-comment>
+      <div v-for="count in index" :key="count">
+        <el-card shadow="never" style="width: 90%;margin: 0 auto">
+          <div class="comment">
+            <div>
+              <span style="color:#dc7a59">{{ (comments[count]) }}:</span>
+              <span>{{ comments[count] }}</span>
+            </div>
+            <div style="display: flex;justify-content: flex-end">
+              <stars v-model:rating="rating[count]"></stars>
+            </div>
+          </div>
+        </el-card>
       </div>
+
     </div>
   </div>
 </template>
 
 <script setup>
 import SingleComment from "@/components/Post/single-comment.vue";
-import {ref} from "vue";
+import { onMounted, reactive, ref } from "vue";
+import stars from '../Stars/stars.vue'
 
 const dialogVisible = ref(false)
 const props = defineProps({
-  postInfo:{
-    type:String,
-    default:''
+  postInfo: {
+    type: String,
+    default: ''
   },
-  comments:{
-    type:Array,
-    default:[]
+  comments: {
+    type: Array,
+    default: []
   }
 })
+const comments = ref([])
+onMounted(()=>{
+  comments.value = props.comments
+})
+const index = ref([0,1,2,3,4,5])
+const rating = ref([0,0,0,0,0,0])
 const selectedComment = ref(1)
+const length = props.comments.length
+
+const submit = () => {
+  
+}
 </script>
 
 <style scoped>
-.main{
+.main {
   width: 100%;
   margin: auto;
 }
-.info{
+
+.info {
   border-radius: 12px;
   text-align: left;
 }
-.button{
-  margin:10px auto;
+
+.button {
+  margin: 10px auto;
 }
-::v-deep .el-radio{
+
+::v-deep .el-radio {
   display: block;
-  margin:10px 0;
+  margin: 10px 0;
 }
 
-/* /deep/ .el-radio__label{
-  white-space: normal;
+.comment{
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  width: 100%;
 }
-
-/deep/ .el-checkbox__label{
-  white-space: normal;
-}*/
-
 </style>
