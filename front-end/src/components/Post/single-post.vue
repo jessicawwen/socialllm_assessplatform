@@ -6,6 +6,7 @@
     <div class="button">
       <el-button type="primary" @click="submit">提交</el-button>
     </div>
+
     <div class="comments">
       <div v-for="count in index" :key="count">
         <el-card shadow="never" style="width: 90%;margin: 0 auto">
@@ -27,7 +28,7 @@
 
 <script setup>
 import SingleComment from "@/components/Post/single-comment.vue";
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, reactive, ref, watch } from "vue";
 import stars from '../Stars/stars.vue'
 
 const dialogVisible = ref(false)
@@ -42,16 +43,18 @@ const props = defineProps({
   }
 })
 const comments = ref([])
+watch(props,(newVal,oldVal)=>{
+  comments.value = newVal.comments
+})
 onMounted(()=>{
   comments.value = props.comments
+  console.log(comments.value[0])
 })
 const index = ref([0,1,2,3,4,5])
 const rating = ref([0,0,0,0,0,0])
-const selectedComment = ref(1)
-const length = props.comments.length
 
 const submit = () => {
-  
+
 }
 </script>
 

@@ -41,9 +41,7 @@ const prevPost = () => {
   }
 }
 const nextPost = () => {
-  if(canGetNext.value === false){
-    ElMessage.warning('您还没发布评论和点赞哦')
-  }else if(currentPost.value < totalPost.value){
+  if(currentPost.value < totalPost.value){
     currentPost.value++
     getPost()
   }

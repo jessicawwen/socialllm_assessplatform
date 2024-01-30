@@ -20,7 +20,7 @@
 
 <script>
 import router from '@/router';
-
+import request from '@/utils/request';
 export default {
   name: 'Login',
   data() {
@@ -33,7 +33,10 @@ export default {
   },
   methods: {
     handleLogin() {
-      router.push('/main')
+      request.post('/login',this.loginForm).then((json)=>{
+        console.log(json)
+      })
+      //router.push('/main')
     }
   }
 };
