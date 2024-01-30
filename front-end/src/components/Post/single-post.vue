@@ -12,8 +12,8 @@
         <el-card shadow="never" style="width: 90%;margin: 0 auto">
           <div class="comment">
             <div>
-              <span style="color:#dc7a59">{{ (comments[count]) }}:</span>
-              <span>{{ comments[count] }}</span>
+              <span style="color:#dc7a59">{{ comments[count]?.username }}:</span>
+              <span>{{ comments[count]?.comment }}</span>
             </div>
             <div style="display: flex;justify-content: flex-end">
               <stars v-model:rating="rating[count]"></stars>
@@ -47,14 +47,13 @@ watch(props,(newVal,oldVal)=>{
   comments.value = newVal.comments
 })
 onMounted(()=>{
-  comments.value = props.comments
-  console.log(comments.value[0])
+  //comments.value = props.comments
 })
 const index = ref([0,1,2,3,4,5])
 const rating = ref([0,0,0,0,0,0])
 
 const submit = () => {
-
+  console.log(rating.value)
 }
 </script>
 
