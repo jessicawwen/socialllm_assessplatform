@@ -1,0 +1,1 @@
+DATABASE_URL = "mysql://root:020328wang@localhost/platform"

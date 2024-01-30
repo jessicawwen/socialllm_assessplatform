@@ -4,7 +4,7 @@
       {{props.postInfo}}
     </el-card>
     <div class="button">
-      <el-button type="primary" @click="generateComments">生成评论</el-button>
+      <el-button type="primary">给评论打分</el-button>
     </div>
     <div class="comments">
       <div v-for="item in props.comments" :key="item.content">
@@ -19,9 +19,6 @@ import SingleComment from "@/components/Post/single-comment.vue";
 import {ref} from "vue";
 
 const dialogVisible = ref(false)
-const generateComments = () => {
-  dialogVisible.value = true
-}
 const props = defineProps({
   postInfo:{
     type:String,

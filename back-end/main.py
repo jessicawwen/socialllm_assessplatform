@@ -10,6 +10,7 @@ import jwt
 from databases import Database
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
+from application import *
 # 其余代码保持不变
 
 # JWT密钥和算法
@@ -54,7 +55,7 @@ app.add_middleware(
 )
 
 # 数据库配置
-DATABASE_URL = "mysql://root:ww010702@localhost/platform"
+DATABASE_URL = "mysql://root:020328wang@localhost/platform"
 
 # 创建数据库实例
 database = Database(DATABASE_URL)

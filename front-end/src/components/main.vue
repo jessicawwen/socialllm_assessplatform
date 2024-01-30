@@ -1,27 +1,68 @@
 <template>
-  <el-button @click="beginAssess">开始评测</el-button>
-  <stars v-model:rating="val1"></stars>
+  <div class="login-container">
+    <header class="login-header">SocialGLM Assessment</header>
+
+    <el-card class="login-card">
+      <el-form ref="loginForm" class="login-form">
+        <el-form-item label="账号">
+          <el-input v-model="loginForm.username" placeholder="请输入账号"></el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input type="password" v-model="loginForm.password" placeholder="请输入密码"></el-input>
+        </el-form-item>
+        <el-form-item style="text-align: center;">
+          <el-button type="primary" @click="handleLogin">登录</el-button>
+        </el-form-item>
+      </el-form>
+    </el-card>
+  </div>
 </template>
 
-<script setup>
-import router from "@/router";
-import request from "@/utils/request";
-import {onMounted, watch} from "vue";
-import stars from ".//Stars/stars.vue"
-import {ref} from "vue";
-const beginAssess = () => {
-  router.push('/main')
-}
-const val1 = ref(0)
-watch(val1,(newVal,oldVal)=>{
-  console.log(newVal)
-})
-onMounted(()=>{
-  
-})
+<script>
+import router from '@/router';
+
+export default {
+  name: 'Login',
+  data() {
+    return {
+      loginForm: {
+        username: '',
+        password: ''
+      }
+    };
+  },
+  methods: {
+    handleLogin() {
+      router.push('/main')
+    }
+  }
+};
 </script>
 
-
 <style scoped>
+.el-button{
+  display: block;
+  margin:0 auto;
+}
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
+.login-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.login-card {
+  width: 500px;
+}
+
+.login-form {
+  margin: 20px;
+}
 </style>
