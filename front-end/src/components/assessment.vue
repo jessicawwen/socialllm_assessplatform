@@ -104,7 +104,7 @@ const submit = () => {
     ElMessage.error('请给所有评价打分！')
   }else{
     let temp = postComments.value.findIndex(item => {
-    return item.source === 'weibobot'
+    return item.source === 'socialglm'
   })
   if (rating.value[temp] <= 2) {
     dialogvisible.value = true
@@ -139,7 +139,7 @@ const feedbackSubmit = () => {
     })
   }
   let temp = postComments.value.findIndex(item => {
-    return item.source === 'weibobot'
+    return item.source === 'socialglm'
   })
   feedbacks[temp].feedback = feedbackContent.value
   request.post(`main/${currentPost.value}`, {feedbacks:feedbacks}).then((res) => {
