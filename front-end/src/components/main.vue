@@ -5,10 +5,10 @@
     <el-card class="login-card">
       <el-form ref="loginForm" class="login-form">
         <el-form-item label="账号">
-          <el-input v-model="loginForm.username" placeholder="请输入账号"></el-input>
+          <el-input v-model="username" placeholder="请输入账号"></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input type="password" v-model="loginForm.password" placeholder="请输入密码"></el-input>
+          <el-input type="password" v-model="password" placeholder="请输入密码"></el-input>
         </el-form-item>
         <el-form-item style="text-align: center;">
           <el-button type="primary" @click="handleLogin">登录</el-button>
@@ -18,28 +18,24 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import router from '@/router';
 import request from '@/utils/request';
-export default {
-  name: 'Login',
-  data() {
-    return {
-      loginForm: {
-        username: '',
-        password: ''
-      }
-    };
-  },
-  methods: {
-    handleLogin() {
-      request.post('/login',this.loginForm).then((json)=>{
-        console.log(json)
-      })
-      //router.push('/main')
-    }
+import { ref } from 'vue';
+const username = ref('')
+const password = ref('')
+const handleLogin = () => {
+  let data = {
+    username:username.value,
+    password:password.value
   }
-};
+  request.post('/login',data).then(res=>{
+    if(res.status===200){
+      sessionStorage.setItem('token',res.data.access_token)
+      router.push('/main')
+    }
+  })
+}
 </script>
 
 <style scoped>

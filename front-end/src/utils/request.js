@@ -6,23 +6,19 @@ const request = axios.create({
 })
 
 request.interceptors.request.use(config => {
-    let userJson = sessionStorage.getItem("user")
-    if (!userJson) {
-        config.headers['token'] = '';  // 设置请求头
+    let token = sessionStorage.getItem("token")
+    if (!token) {
+        config.headers['Authorization'] = '';  // 设置请求头
     }
     else {
-        config.headers['auth'] = JSON.parse(userJson).token;  // 设置请求头
-        config.headers['role'] = JSON.parse(userJson).role;
-        config.headers['ID'] = JSON.parse(userJson).username;
+        config.headers['Authorization'] = 'Bearer'+' '+token
     }
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
+    //config.headers['Content-Type'] = 'multipart/form-data'
     return config
 }, error => {
     return Promise.reject(error)
 });
-
-// response 拦截器
-// 可以在接口响应后统一处理结果
 request.interceptors.response.use(
     response => {
         let res = response;

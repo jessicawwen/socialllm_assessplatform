@@ -28,7 +28,7 @@
 
 <script setup>
 import SingleComment from "@/components/Post/single-comment.vue";
-import { onMounted, reactive, ref, watch } from "vue";
+import { onMounted, reactive, ref, watch,toRaw } from "vue";
 import stars from '../Stars/stars.vue'
 
 const dialogVisible = ref(false)
@@ -45,15 +45,29 @@ const props = defineProps({
 const comments = ref([])
 watch(props,(newVal,oldVal)=>{
   comments.value = newVal.comments
+  let len = comments.value.length
+  for(let i = 0;i < len;i++){
+    index.value.push(i)
+    rating.value.push(0)
+  }
 })
+const index = ref([])
+const rating = ref([])
 onMounted(()=>{
-  //comments.value = props.comments
+  
 })
-const index = ref([0,1,2,3,4,5])
-const rating = ref([0,0,0,0,0,0])
+
 
 const submit = () => {
-  console.log(rating.value)
+  let feedbacks = []
+  for(let i = 0;i < 6;i++){
+    feedbacks.push({
+      pairsID:comments.value[i]?.pairsID,
+      result:rating.value[i],
+      feedback:""
+    })
+  }
+  console.log(feedbacks)
 }
 </script>
 
